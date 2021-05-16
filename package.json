@@ -1,0 +1,57 @@
+{
+  "name": "materialize-map",
+  "description": "Materialize map operators: concatMap, mergeMap, switchMap, exhaustMap",
+  "keywords": [
+    "RxJS",
+    "materialize",
+    "switchMap",
+    "exhaustMap",
+    "concatMap",
+    "mergeMap",
+    "operators",
+    "operator",
+    "extension",
+    "util"
+  ],
+  "version": "0.1.0-alpha.0",
+  "main": "lib/index.js",
+  "types": "lib/index.d.js",
+  "license": "MIT",
+  "author": {
+    "name": "Rinat Arsaev",
+    "email": "krickray@gmail.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/KrickRay/materialize-map.git"
+  },
+  "homepage": "https://github.com/KrickRay/materialize-map",
+  "scripts": {
+    "test": "jest",
+    "watch": "npm tes -- --watchAll",
+    "clean": "shx rm -rf lib",
+    "build": "yarn clean & tsc -p tsconfig.json",
+    "demo": "ts-node demo/demo.ts"
+  },
+  "peerDependencies": {
+    "rxjs": "^6.0.0"
+  },
+  "devDependencies": {
+    "@types/jest": "^26.0.23",
+    "@types/mockdate": "^3.0.0",
+    "@typescript-eslint/eslint-plugin": "^4.23.0",
+    "@typescript-eslint/parser": "^4.23.0",
+    "eslint": "^7.26.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-import": "^2.23.4",
+    "eslint-plugin-prettier": "^3.4.0",
+    "jest": "^26.6.3",
+    "mockdate": "^3.0.5",
+    "prettier": "^2.3.0",
+    "rx-sandbox": "^1.0.4",
+    "shx": "^0.3.3",
+    "ts-jest": "^26.5.6",
+    "ts-node": "^10.0.0",
+    "typescript": "^4.2.4"
+  }
+}
