@@ -1,4 +1,4 @@
-import { MapNotification } from "../../materialize-map/map-notification";
+import { MapNotification } from "../../materialize-map";
 import { AddFunction, createAdd } from "../part/add";
 import { Part } from "../part/part";
 import { createSelect, SelectFunction } from "../part/select";

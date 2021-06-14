@@ -1,7 +1,6 @@
 import { from } from "rxjs";
-import { ObservableInput, OperatorFunction } from "rxjs/internal/types";
+import { ObservableInput, OperatorFunction, ObservedValueOf } from "rxjs/internal/types";
 import { mergeMap } from "rxjs/operators";
-import { ObservedValueOf } from "rxjs/src/internal/types";
 
 import { createMaterializeMap, endMaterializeMap, MapNotification } from "../../materialize-map";
 

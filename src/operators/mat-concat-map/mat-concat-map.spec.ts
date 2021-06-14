@@ -2,7 +2,7 @@ import { rxSandbox } from "rx-sandbox";
 import { Notification, of, throwError } from "rxjs";
 import { delay } from "rxjs/operators";
 
-import { MapNotification } from "../../materialize-map/map-notification";
+import { MapNotification } from "../../materialize-map";
 import { OUTER_0, VALUES } from "../test/common";
 import { matConcatMap } from "./mat-concat-map";
 
