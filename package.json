@@ -4,18 +4,21 @@
   "keywords": [
     "RxJS",
     "materialize",
+    "dematerialize",
     "switchMap",
-    "exhaustMap",
     "concatMap",
     "mergeMap",
-    "operators",
+    "exhaustMap",
     "operator",
     "extension",
     "util"
   ],
-  "version": "0.1.0-alpha.0",
+  "version": "0.1.0-alpha.1",
   "main": "lib/index.js",
   "types": "lib/index.d.js",
+  "files": [
+    "lib"
+  ],
   "license": "MIT",
   "author": {
     "name": "Rinat Arsaev",
@@ -31,7 +34,8 @@
     "watch": "npm tes -- --watchAll",
     "clean": "shx rm -rf lib",
     "build": "yarn clean & tsc -p tsconfig.json",
-    "demo": "ts-node demo/demo.ts"
+    "demo": "ts-node demo/demo.ts",
+    "prepublishOnly": "npm run build"
   },
   "peerDependencies": {
     "rxjs": "^6.0.0"

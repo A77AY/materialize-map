@@ -1,8 +1,12 @@
-# Materialize Map Operators
+# Materialize/Dematerialize Map Operators
 
-[![npm version](https://badge.fury.io/js/%40materialize-map.svg)](https://badge.fury.io/js/%40materialize-map)
+[![npm version](https://badge.fury.io/js/materialize-map.svg)](https://badge.fury.io/js/materialize-map)
 
-Materialize (inner & outer) maps operators:
+> Represents all of the notifications from the inner source and projected outer `Observable` (from "map" operator) as next emissions marked with their original types within `MapNotification` objects.
+
+Works like [`materialize`](https://rxjs.dev/api/operators/materialize) but for "map" operators.
+
+**Operators**
 
 -   `matMergeMap()`
 -   `matConcatMap()`
@@ -14,11 +18,11 @@ TODO:
 -   `matMergeScan()`
 -->
 
-Dematerialize:
+**Dematerialize**
 
 -   `dematerializeMap()`
 
-Data-enriching operators:
+**Data-enriching operators**
 
 -   `ProgressPart()`
     -   `ProgressPart.add()`
@@ -27,6 +31,10 @@ Data-enriching operators:
 -   `UpdatedAtPart()`
     -   `UpdatedAtPart.add()`
     -   `UpdatedAtPart.select()`
+
+**`MapNotification`**
+
+`MapNotification` contains outer value with index and inner [`Notification`](https://rxjs.dev/api/index/class/Notification) with index.
 
 ## Installation
 
