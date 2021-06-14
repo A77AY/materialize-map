@@ -1,8 +1,8 @@
 import * as MockDate from "mockdate";
 import { rxSandbox } from "rx-sandbox";
 import { of } from "rxjs";
-import { map } from "rxjs/operators";
 
+import { MapNotification } from "../../materialize-map";
 import { matConcatMap } from "../../operators";
 import { VALUES } from "../../operators/test/common";
 import { UpdatedAtPart } from "./updated-at-part";
@@ -16,11 +16,21 @@ describe("UpdatedAtPart", () => {
         const { hot, getMessages, e } = rxSandbox.create(true);
         MockDate.set(Date.now());
         const actual = hot("-a-|").pipe(SIMPLE_MAP, UpdatedAtPart.add());
-        const expected = e("-(snca)-|", {
-            ...VALUES,
-            a: new UpdatedAtPart(new Date()),
+        const expected = e("-(snc)-|", {
+            s: new Map<any, any>([
+                [MapNotification, VALUES.s],
+                [UpdatedAtPart, new UpdatedAtPart()],
+            ]),
+            n: new Map<any, any>([
+                [MapNotification, VALUES.n],
+                [UpdatedAtPart, new UpdatedAtPart()],
+            ]),
+            c: new Map<any, any>([
+                [MapNotification, VALUES.c],
+                [UpdatedAtPart, new UpdatedAtPart(new Date())],
+            ]),
         });
-        marbleAssert(getMessages(actual)).to.equal(expected);
+        marbleAssert(getMessages(actual)).to.equal(expected as any);
         MockDate.reset();
     });
 

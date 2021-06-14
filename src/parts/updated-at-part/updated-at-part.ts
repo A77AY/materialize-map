@@ -17,10 +17,10 @@ export class UpdatedAtPart<O, I> extends Part<O, I, { updatedAt: Date }> {
     }
 
     static add<O, I, A = never>(): AddFunction<O, I, A, UpdatedAtPart<O, I>> {
-        return createAdd(new UpdatedAtPart());
+        return createAdd(UpdatedAtPart, new UpdatedAtPart());
     }
 
-    static select<O, I>(): SelectFunction<UpdatedAtPart<O, I>, Date> {
-        return createSelect(UpdatedAtPart, (v) => v.state.updatedAt);
+    static select<O, I, A = never>(): SelectFunction<UpdatedAtPart<O, I>, A, Date> {
+        return createSelect(UpdatedAtPart, (v) => v.state.updatedAt, { filter: (v) => !!v });
     }
 }

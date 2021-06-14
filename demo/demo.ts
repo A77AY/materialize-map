@@ -22,7 +22,7 @@ updatedAt$.subscribe((date) => log("Updated At", date.toISOString()));
 // .......Progress: false
 // .......Progress: true
 // ..........Value: Hello, Ray!
-// .....Updated At: 2021-06-14T12:02:57.075Z
+// .....Updated At: 2021-06-14T23:31:22.546Z
 // ..........Value: Hello, Ellie!
-// .....Updated At: 2021-06-14T12:02:57.123Z
 // .......Progress: false
+// .....Updated At: 2021-06-14T23:31:22.610Z
