@@ -4,9 +4,8 @@ import { defaultIfEmpty, map, mergeScan } from "rxjs/operators";
 import { MapNotification } from "../../materialize-map";
 import { createObservable } from "../../utils/create-observable";
 import { Part } from "./part";
-
-export type ClassKeyMap<V extends InstanceType<any>> = Map<{ new (...args: any): V }, V>;
-export type MapOrValue<V> = V | ClassKeyMap<V>;
+import { ClassKeyMap } from "./types/class-key-map";
+import { MapOrValue } from "./types/map-or-value";
 
 export type AddFunction<O, I, A, B> = OperatorFunction<
     MapOrValue<MapNotification<O, I> | A>,

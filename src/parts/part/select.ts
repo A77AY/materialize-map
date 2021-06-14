@@ -3,8 +3,9 @@ import { OperatorFunction } from "rxjs/internal/types";
 import { concatMap, distinctUntilChanged, filter, startWith, switchMap } from "rxjs/operators";
 
 import { createObservable } from "../../utils/create-observable";
-import { ClassKeyMap, MapOrValue } from "./add";
 import { Part } from "./part";
+import { ClassKeyMap } from "./types/class-key-map";
+import { MapOrValue } from "./types/map-or-value";
 
 export type SelectFunction<T, A, R> = OperatorFunction<MapOrValue<T | A>, R>;
 
