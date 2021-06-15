@@ -1,5 +1,5 @@
 import { from, Notification, of } from "rxjs";
-import { concatMap, mergeMap } from "rxjs/operators";
+import { mergeMap } from "rxjs/operators";
 
 import { createMaterializeMap, endMaterializeMap, MapNotification, Outer } from "../../materialize-map";
 import { BasicMap } from "../types/basic-map";
