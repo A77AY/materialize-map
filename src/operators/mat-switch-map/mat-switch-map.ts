@@ -22,10 +22,7 @@ export const matSwitchMap = createMaterializeMap<BasicMap>(
                     (oldValue.isStart || oldValue.inner.notification.kind === "N")
                 ) {
                     return of(
-                        new MapNotification(oldValue.outer, {
-                            index: oldValue.isStart ? 0 : oldValue.inner.index + 1,
-                            notification: Notification.createComplete(),
-                        }),
+                        new MapNotification(oldValue.outer, { notification: Notification.createComplete() }),
                         currentValue
                     );
                 }

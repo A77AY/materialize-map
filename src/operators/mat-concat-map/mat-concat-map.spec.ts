@@ -3,7 +3,7 @@ import { Notification, of, throwError } from "rxjs";
 import { delay } from "rxjs/operators";
 
 import { MapNotification } from "../../materialize-map";
-import { OUTER_0, VALUES } from "../test/common";
+import { OUTER_A, VALUES } from "../test/common";
 import { matConcatMap } from "./mat-concat-map";
 
 const { marbleAssert } = rxSandbox;
@@ -52,7 +52,7 @@ describe("matConcatMap", () => {
             const actual = hot("-a-|").pipe(matConcatMap((v) => of(v, "x")));
             const expected = e("-(snxc)-|", {
                 ...VALUES,
-                c: new MapNotification(OUTER_0, { index: 2, notification: Notification.createComplete() }),
+                c: new MapNotification(OUTER_A, { notification: Notification.createComplete() }),
             });
             marbleAssert(getMessages(actual)).to.equal(expected as any);
         });

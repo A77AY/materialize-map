@@ -4,27 +4,20 @@ import { mergeMap } from "rxjs/operators";
 import { createMaterializeMap, endMaterializeMap, MapNotification, Outer } from "../../materialize-map";
 import { BasicMap } from "../types/basic-map";
 
-export const OUTER_0: Outer<string> = {
-    index: 0,
-    value: "a",
-};
-
-export const OUTER_1: Outer<string> = {
-    index: 1,
-    value: "b",
-};
+export const OUTER_A: Outer<string> = { value: "a" };
+export const OUTER_B: Outer<string> = { value: "b" };
 
 export const VALUES = {
-    s: new MapNotification(OUTER_0),
-    n: new MapNotification(OUTER_0, { index: 0, notification: Notification.createNext(OUTER_0.value) }),
-    c: new MapNotification(OUTER_0, { index: 1, notification: Notification.createComplete() }),
+    s: new MapNotification(OUTER_A),
+    n: new MapNotification(OUTER_A, { notification: Notification.createNext(OUTER_A.value) }),
+    c: new MapNotification(OUTER_A, { notification: Notification.createComplete() }),
 
-    x: new MapNotification(OUTER_0, { index: 1, notification: Notification.createNext("x") }),
-    e: new MapNotification(OUTER_0, { index: 0, notification: Notification.createError("e") }),
+    x: new MapNotification(OUTER_A, { notification: Notification.createNext("x") }),
+    e: new MapNotification(OUTER_A, { notification: Notification.createError("e") }),
 
-    S: new MapNotification(OUTER_1),
-    N: new MapNotification(OUTER_1, { index: 0, notification: Notification.createNext(OUTER_1.value) }),
-    C: new MapNotification(OUTER_1, { index: 1, notification: Notification.createComplete() }),
+    S: new MapNotification(OUTER_B),
+    N: new MapNotification(OUTER_B, { notification: Notification.createNext(OUTER_B.value) }),
+    C: new MapNotification(OUTER_B, { notification: Notification.createComplete() }),
 };
 
 // TODO: move to createMaterializeMap test

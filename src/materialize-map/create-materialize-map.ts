@@ -13,8 +13,8 @@ export function createMaterializeMap<F extends (...args: any[]) => OperatorFunct
         return (src$) =>
             src$.pipe(
                 scan(
-                    (mapNotification, value) => new MapNotification({ index: mapNotification.outer.index + 1, value }),
-                    new MapNotification({ index: -1, value: undefined })
+                    (mapNotification, value) => new MapNotification({ value }),
+                    new MapNotification({ value: undefined })
                 ),
                 withoutStartMapNotifications
                     ? operator
@@ -30,15 +30,8 @@ export function endMaterializeMap<O, I>(
         src$.pipe(
             materialize(),
             scan(
-                (mapNotification, notification) =>
-                    new MapNotification(startMapNotification.outer, {
-                        notification,
-                        index: mapNotification.inner.index + 1,
-                    }),
-                new MapNotification(startMapNotification.outer, {
-                    index: -1,
-                    notification: undefined,
-                })
+                (mapNotification, notification) => new MapNotification(startMapNotification.outer, { notification }),
+                new MapNotification(startMapNotification.outer)
             )
         );
 }
