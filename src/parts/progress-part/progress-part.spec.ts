@@ -1,7 +1,6 @@
 import { rxSandbox } from "rx-sandbox";
 import { of } from "rxjs";
 
-import { MapNotification } from "../../materialize-map";
 import { matConcatMap } from "../../operators";
 import { VALUES } from "../../operators/test/common";
 import { ProgressPart } from "./progress-part";
@@ -14,21 +13,12 @@ describe("ProgressPart", () => {
     it("Should next", () => {
         const { hot, getMessages, e } = rxSandbox.create(true);
         const actual = hot("-a-|").pipe(SIMPLE_MAP, ProgressPart.add());
-        const expected = e("-(snc)-|", {
-            s: new Map<any, any>([
-                [MapNotification, VALUES.s],
-                [ProgressPart, new ProgressPart(1)],
-            ]),
-            n: new Map<any, any>([
-                [MapNotification, VALUES.n],
-                [ProgressPart, new ProgressPart(1)],
-            ]),
-            c: new Map<any, any>([
-                [MapNotification, VALUES.c],
-                [ProgressPart, new ProgressPart(0)],
-            ]),
+        const expected = e("-(sancb)-|", {
+            ...VALUES,
+            a: new ProgressPart(1),
+            b: new ProgressPart(0),
         });
-        marbleAssert(getMessages(actual)).to.equal(expected as any);
+        marbleAssert(getMessages(actual)).to.equal(expected);
     });
 
     describe("ProgressPart.selectInProgress", () => {

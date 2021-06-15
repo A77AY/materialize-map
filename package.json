@@ -1,6 +1,6 @@
 {
   "name": "materialize-map",
-  "description": "Materialize map operators: concatMap, mergeMap, switchMap, exhaustMap",
+  "description": "Represents all the notifications from the inner source and projected outer Observable (from map-something/transform operator) as next emissions marked with their original types within MapNotification objects",
   "keywords": [
     "RxJS",
     "materialize",

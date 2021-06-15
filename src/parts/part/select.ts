@@ -15,7 +15,7 @@ export function getPart<T>(PartClass: { new (): T }): OperatorFunction<MapOrValu
             concatMap((value) => {
                 if (value instanceof PartClass) {
                     if (value) return of(value);
-                } else if ((value as ClassKeyMap<T>)?.has(PartClass)) {
+                } else if (value instanceof Map && value.has(PartClass)) {
                     return of((value as ClassKeyMap<T>).get(PartClass));
                 }
                 return EMPTY;

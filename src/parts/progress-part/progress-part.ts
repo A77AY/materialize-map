@@ -18,7 +18,7 @@ export class ProgressPart<O, I> extends Part<O, I, { count: number }> {
     }
 
     static add<O, I, A = never>(): AddFunction<O, I, A, ProgressPart<O, I>> {
-        return createAdd(ProgressPart, new ProgressPart());
+        return createAdd(new ProgressPart());
     }
 
     static selectInProgress<O, I, A = never>(): SelectFunction<ProgressPart<O, I>, A, boolean> {
