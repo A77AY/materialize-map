@@ -6,9 +6,9 @@ import { AddFunction, createAdd } from "../part/add";
 import { Part } from "../part/part";
 import { createSelect, SelectFunction } from "../part/select";
 
-export class UpdatedAtPart<O, I> extends Part<O, I, { updatedAt: Date }> {
+export class UpdatedAtPart<O, I> extends Part<O, I> {
     constructor(public updatedAt?: Date) {
-        super({ updatedAt });
+        super();
     }
 
     create(map: MapNotification<O, I>): ObservableOrValue<UpdatedAtPart<O, I>> {
@@ -21,6 +21,6 @@ export class UpdatedAtPart<O, I> extends Part<O, I, { updatedAt: Date }> {
     }
 
     static select<O, I, A = never>(): SelectFunction<UpdatedAtPart<O, I>, A, Date> {
-        return createSelect(UpdatedAtPart, (v) => v.state.updatedAt, { filter: (v) => !!v });
+        return createSelect(UpdatedAtPart, (v) => v.updatedAt, { filter: (v) => !!v });
     }
 }

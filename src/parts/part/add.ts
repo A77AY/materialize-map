@@ -8,9 +8,7 @@ import { Part } from "./part";
 
 export type AddFunction<O, I, A, B> = OperatorFunction<MapNotification<O, I> | A, MapNotification<O, I> | A | B>;
 
-export function createAdd<O, I, B extends Part<unknown, unknown, unknown>, A = never>(
-    seed: B
-): AddFunction<O, I, A, B> {
+export function createAdd<O, I, B extends Part, A = never>(seed: B): AddFunction<O, I, A, B> {
     return (src$) =>
         src$.pipe(
             publish((multicasted$) =>

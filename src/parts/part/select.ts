@@ -23,7 +23,7 @@ export function getPart<T>(PartClass: { new (): T }): OperatorFunction<MapOrValu
         );
 }
 
-export function createSelect<P extends Part<unknown, unknown, unknown>, T, A = never>(
+export function createSelect<P extends Part, A, T>(
     PartClass: { new (): P },
     select: (value: P) => T | Observable<T>,
     options: {

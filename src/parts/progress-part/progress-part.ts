@@ -6,9 +6,9 @@ import { AddFunction, createAdd } from "../part/add";
 import { Part } from "../part/part";
 import { createSelect, SelectFunction } from "../part/select";
 
-export class ProgressPart<O, I> extends Part<O, I, { count: number }> {
+export class ProgressPart<O, I> extends Part<O, I> {
     constructor(public count = 0) {
-        super({ count });
+        super();
     }
 
     create(map: MapNotification<O, I>): ObservableOrValue<ProgressPart<O, I>> {
@@ -22,10 +22,10 @@ export class ProgressPart<O, I> extends Part<O, I, { count: number }> {
     }
 
     static selectInProgress<O, I, A = never>(): SelectFunction<ProgressPart<O, I>, A, boolean> {
-        return createSelect(ProgressPart, (v) => !!v.state.count, { startValue: false });
+        return createSelect(ProgressPart, (v) => !!v.count, { startValue: false });
     }
 
     static selectProgress<O, I, A = never>(): SelectFunction<ProgressPart<O, I>, A, number> {
-        return createSelect(ProgressPart, (v) => v.state.count, { startValue: 0 });
+        return createSelect(ProgressPart, (v) => v.count, { startValue: 0 });
     }
 }

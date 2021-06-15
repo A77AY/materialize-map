@@ -10,7 +10,7 @@ export interface Inner<T> {
     notification: Notification<T>;
 }
 
-export class MapNotification<O, I> {
+export class MapNotification<O = unknown, I = unknown> {
     get isStart(): boolean {
         return !this.inner;
     }
