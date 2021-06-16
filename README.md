@@ -8,15 +8,13 @@ Works like [`materialize`](https://rxjs.dev/api/operators/materialize) but for m
 
 **Operators**
 
--   `matMergeMap()`
--   `matConcatMap()`
--   `matSwitchMap()`
--   `matExhaustMap()`
-
-<!--
-TODO:
--   `matMergeScan()`
--->
+-   Maps:
+    -   `matMergeMap()`
+    -   `matConcatMap()`
+    -   `matSwitchMap()`
+    -   `matExhaustMap()`
+-   Scans:
+    -   `matMergeScan()`
 
 **Dematerialize**
 
