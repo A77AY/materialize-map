@@ -50,7 +50,7 @@ npm i materialize-map
 ## Example
 
 ```ts
-import { matMergeMap, ProgressCountPart, UpdatedAtPart, combineParts, ValuePart, ErrorPart } from "materialize-map";
+import { matMergeMap, ProgressPart, UpdatedAtPart, combineParts, ValuePart, ErrorPart } from "materialize-map";
 import { merge, of, throwError } from "rxjs";
 import { delay, share } from "rxjs/operators";
 
@@ -61,7 +61,7 @@ const helloUser$$ = merge(of("Ray"), of("Ellie").pipe(delay(50)), of("Error").pi
     }),
     ValuePart.add(),
     ErrorPart.add(),
-    ProgressCountPart.add(),
+    ProgressPart.add(),
     UpdatedAtPart.add(),
     combineParts(),
     share()
@@ -69,7 +69,7 @@ const helloUser$$ = merge(of("Ray"), of("Ellie").pipe(delay(50)), of("Error").pi
 
 const value$ = helloUser$$.pipe(ValuePart.select());
 const error$ = helloUser$$.pipe(ErrorPart.select());
-const progressCount$ = helloUser$$.pipe(ProgressCountPart.select());
+const progressCount$ = helloUser$$.pipe(ProgressPart.select());
 const updatedAt$ = helloUser$$.pipe(UpdatedAtPart.select());
 
 const log = (title: string, value: string | number | boolean) => console.log(title.padStart(20, ".") + ": " + value);
