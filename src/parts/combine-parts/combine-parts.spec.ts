@@ -3,6 +3,7 @@ import { distinctUntilChanged } from "rxjs/operators";
 
 import { MapNotification } from "../../materialize-map";
 import { SIMPLE_MAT_MAP, VALUES } from "../../operators/test/common";
+import { InstanceSet } from "../../utils/instance-set";
 import { ProgressPart } from "../progress-part/progress-part";
 import { combineParts } from "./combine-parts";
 
@@ -13,9 +14,9 @@ describe("combineParts", () => {
         const { hot, getMessages, e } = rxSandbox.create(true);
         const actual = hot("-a-|").pipe(SIMPLE_MAT_MAP, combineParts());
         const expected = e("-(snc)-|", {
-            s: new Map([[MapNotification, VALUES.s]]),
-            n: new Map([[MapNotification, VALUES.n]]),
-            c: new Map([[MapNotification, VALUES.c]]),
+            s: new InstanceSet([[MapNotification, VALUES.s]]),
+            n: new InstanceSet([[MapNotification, VALUES.n]]),
+            c: new InstanceSet([[MapNotification, VALUES.c]]),
         });
         const r = getMessages(actual);
         marbleAssert(r).to.equal(expected);
@@ -30,11 +31,11 @@ describe("combineParts", () => {
         const P = [ProgressPart, new ProgressPart(1)] as any;
         const R = [ProgressPart, new ProgressPart(0)] as any;
         const expected = e("-(sPncR)-|", {
-            s: new Map([s, P]), // added after s and P equal
-            P: new Map([s, P]),
-            n: new Map([n, P]),
-            c: new Map([c, P]),
-            R: new Map([c, R]),
+            s: new InstanceSet([s, P]), // added after s and P equal
+            P: new InstanceSet([s, P]),
+            n: new InstanceSet([n, P]),
+            c: new InstanceSet([c, P]),
+            R: new InstanceSet([c, R]),
         });
         const r = getMessages(actual);
         marbleAssert(r).to.equal(expected as any);
@@ -49,10 +50,10 @@ describe("combineParts", () => {
         const P = [ProgressPart, new ProgressPart(1)] as any;
         const R = [ProgressPart, new ProgressPart(0)] as any;
         const expected = e("-(sncR)-|", {
-            s: new Map([s, P]),
-            n: new Map([n, P]),
-            c: new Map([c, P]),
-            R: new Map([c, R]),
+            s: new InstanceSet([s, P]),
+            n: new InstanceSet([n, P]),
+            c: new InstanceSet([c, P]),
+            R: new InstanceSet([c, R]),
         });
         const r = getMessages(actual);
         marbleAssert(r).to.equal(expected as any);
