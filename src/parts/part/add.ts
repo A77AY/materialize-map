@@ -1,29 +1,12 @@
-import { merge } from "rxjs";
 import { OperatorFunction } from "rxjs/internal/types";
-import { distinctUntilChanged, filter, mergeScan, publish } from "rxjs/operators";
+import { mergeScan } from "rxjs/operators";
 
 import { MapNotification } from "../../materialize-map";
 import { createObservable } from "../../utils/create-observable";
 import { Part } from "./part";
 
-export type AddFunction<O, I, A, B> = OperatorFunction<MapNotification<O, I> | A, MapNotification<O, I> | A | B>;
+export type AddFunction<O, I, P> = OperatorFunction<MapNotification<O, I>, P>;
 
-export function createAdd<O, I, B extends Part, A = never>(seed: B): AddFunction<O, I, A, B> {
-    return (src$) =>
-        src$.pipe(
-            publish((multicasted$) =>
-                merge(
-                    multicasted$,
-                    multicasted$.pipe(
-                        filter((input) => input instanceof MapNotification),
-                        mergeScan<MapNotification<O, I>, B>(
-                            (lastPart, input) => createObservable(lastPart.create(input)),
-                            seed,
-                            1
-                        ),
-                        distinctUntilChanged()
-                    )
-                )
-            )
-        );
+export function createAdd<O, I, P extends Part>(seed: P): AddFunction<O, I, P> {
+    return (src$) => src$.pipe(mergeScan((lastPart, input) => createObservable(lastPart.create(input)), seed, 1));
 }

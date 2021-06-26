@@ -15,11 +15,11 @@ describe("UpdatedAtPart", () => {
         const { hot, getMessages, e } = rxSandbox.create(true);
         MockDate.set(Date.now());
         const actual = hot("-a-|").pipe(SIMPLE_MAP, UpdatedAtPart.add());
-        const expected = e("-(snca)-|", {
+        const expected = e("-a-|", {
             ...VALUES,
             a: new UpdatedAtPart(new Date()),
         });
-        marbleAssert(getMessages(actual)).to.equal(expected);
+        marbleAssert(getMessages(actual)).to.equal(expected as any);
         MockDate.reset();
     });
 

@@ -1,26 +1,25 @@
 import { EMPTY } from "rxjs";
+import { filter, pluck } from "rxjs/operators";
 
 import { MapNotification } from "../../materialize-map";
 import { ObservableOrValue } from "../../utils/create-observable";
 import { AddFunction, createAdd } from "../part/add";
 import { Part } from "../part/part";
-import { createSelect, SelectFunction } from "../part/select";
+import { getPart, SelectFunction } from "../part/select";
 
-export class UpdatedAtPart<O, I> extends Part<O, I> {
-    constructor(public updatedAt?: Date) {
-        super();
-    }
+export class UpdatedAtPart implements Part {
+    constructor(public updatedAt?: Date) {}
 
-    create(map: MapNotification<O, I>): ObservableOrValue<UpdatedAtPart<O, I>> {
+    create(map: MapNotification): ObservableOrValue<UpdatedAtPart> {
         if (!map.isStart && map.inner.notification.kind !== "N") return new UpdatedAtPart(new Date());
         return EMPTY;
     }
 
-    static add<O, I, A = never>(): AddFunction<O, I, A, UpdatedAtPart<O, I>> {
-        return createAdd(new UpdatedAtPart());
+    static add<O, I>(): AddFunction<O, I, UpdatedAtPart> {
+        return (src$) => src$.pipe(createAdd(new UpdatedAtPart()));
     }
 
-    static select<O, I, A = never>(): SelectFunction<UpdatedAtPart<O, I>, A, Date> {
-        return createSelect(UpdatedAtPart, (v) => v.updatedAt, { filter: (v) => !!v });
+    static select<A = never>(): SelectFunction<UpdatedAtPart, A, Date> {
+        return (src$) => src$.pipe(getPart(UpdatedAtPart), pluck("updatedAt"), filter(Boolean as (v: Date) => boolean));
     }
 }

@@ -14,9 +14,9 @@ describe("combineParts", () => {
         const { hot, getMessages, e } = rxSandbox.create(true);
         const actual = hot("-a-|").pipe(SIMPLE_MAT_MAP, combineParts());
         const expected = e("-(snc)-|", {
-            s: new InstanceSet([[MapNotification, VALUES.s]]),
-            n: new InstanceSet([[MapNotification, VALUES.n]]),
-            c: new InstanceSet([[MapNotification, VALUES.c]]),
+            s: new InstanceSet([[MapNotification, VALUES.s]] as const),
+            n: new InstanceSet([[MapNotification, VALUES.n]] as const),
+            c: new InstanceSet([[MapNotification, VALUES.c]] as const),
         });
         const r = getMessages(actual);
         marbleAssert(r).to.equal(expected);
@@ -24,7 +24,7 @@ describe("combineParts", () => {
 
     it("should be combined MapNotification with parts", () => {
         const { hot, getMessages, e } = rxSandbox.create(true);
-        const actual = hot("-a-|").pipe(SIMPLE_MAT_MAP, ProgressPart.add(), combineParts());
+        const actual = hot("-a-|").pipe(SIMPLE_MAT_MAP, combineParts(ProgressPart.add()));
         const s = [MapNotification, VALUES.s] as any;
         const n = [MapNotification, VALUES.n] as any;
         const c = [MapNotification, VALUES.c] as any;
@@ -43,7 +43,7 @@ describe("combineParts", () => {
 
     it("should be combined MapNotification with parts distinctUntilChanged", () => {
         const { hot, getMessages, e } = rxSandbox.create(true);
-        const actual = hot("-a-|").pipe(SIMPLE_MAT_MAP, ProgressPart.add(), combineParts(), distinctUntilChanged());
+        const actual = hot("-a-|").pipe(SIMPLE_MAT_MAP, combineParts(ProgressPart.add()), distinctUntilChanged());
         const s = [MapNotification, VALUES.s] as any;
         const n = [MapNotification, VALUES.n] as any;
         const c = [MapNotification, VALUES.c] as any;

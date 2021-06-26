@@ -8,11 +8,7 @@ const helloUser$$ = merge(of("Ray"), of("Ellie").pipe(delay(50)), of("Error").pi
         if (idx === 2) return throwError(`And hello to you, ${name}!`);
         return of(`Hello, ${name}!`).pipe(delay(100));
     }),
-    ValuePart.add(),
-    ErrorPart.add(),
-    ProgressPart.add(),
-    UpdatedAtPart.add(),
-    combineParts(),
+    combineParts(ValuePart.add(), ErrorPart.add(), ProgressPart.add(), UpdatedAtPart.add()),
     share()
 );
 
@@ -32,12 +28,12 @@ updatedAt$.subscribe((date) => log("Updated At", date.toISOString()));
 // ......Progress Count: 1
 // ......Progress Count: 2
 // ...............Value: Hello, Ray!
-// ..........Updated At: 2021-06-15T23:05:17.131Z
 // ......Progress Count: 1
+// ..........Updated At: 2021-06-26T00:20:11.614Z
 // ......Progress Count: 2
-// ..........Updated At: 2021-06-15T23:05:17.133Z
-// ......Progress Count: 1
 // ...............Error: And hello to you, Error!
+// ......Progress Count: 1
+// ..........Updated At: 2021-06-26T00:20:11.618Z
 // ...............Value: Hello, Ellie!
-// ..........Updated At: 2021-06-15T23:05:17.194Z
 // ......Progress Count: 0
+// ..........Updated At: 2021-06-26T00:20:11.677Z

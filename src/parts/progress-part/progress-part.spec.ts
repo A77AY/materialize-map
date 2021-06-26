@@ -13,12 +13,12 @@ describe("ProgressPart", () => {
     it("Should next", () => {
         const { hot, getMessages, e } = rxSandbox.create(true);
         const actual = hot("-a-|").pipe(SIMPLE_MAP, ProgressPart.add());
-        const expected = e("-(sancb)-|", {
+        const expected = e("-(ab)-|", {
             ...VALUES,
             a: new ProgressPart(1),
             b: new ProgressPart(0),
         });
-        marbleAssert(getMessages(actual)).to.equal(expected);
+        marbleAssert(getMessages(actual)).to.equal(expected as any);
     });
 
     describe("select", () => {
